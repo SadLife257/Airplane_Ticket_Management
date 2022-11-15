@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: Gia Bao
+Build-Jdk: 17.0.4.1
+Implementation-Title: Ticket Management
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: tdtu.final.java.spring
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/ticketmanagement
+Created-By: Maven Integration for Eclipse
+
