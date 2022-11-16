@@ -40,7 +40,7 @@
               <th>Customer Name</th>
               <th>Customer CMND</th>
               <th>Customer Phone Number</th>
-              <th colspan="2">Control</th>
+              <th sec:authorize="hasRole('ROLE_ADMIN')" colspan="2">Control</th>
             </tr>
           </thead>
           <tbody id="table-body">
@@ -49,8 +49,12 @@
           			<td th:text="${customer.customerName}">Customer Name</td>
           			<td th:text="${customer.customerCMND}">Customer CMND</td>
           			<td th:text="${customer.customerPhone}">Customer Phone Number</td>
-          			<td><a th:href="@{/edit/{id}(id=${customer.customerID})}">Edit</a></td>
-                	<td><a th:href="@{/delete/{id}(id=${customer.customerID})}">Delete</a></td>
+          			<td sec:authorize="hasRole('ROLE_ADMIN')">
+          				<a th:href="@{/edit/{id}(id=${customer.customerID})}">Edit</a>
+      				</td>
+                	<td sec:authorize="hasRole('ROLE_ADMIN')">
+                		<a th:href="@{/delete/{id}(id=${customer.customerID})}">Delete</a>
+            		</td>
           		</tr>
           </tbody>
         </table>

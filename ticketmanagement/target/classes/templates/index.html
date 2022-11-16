@@ -7,11 +7,16 @@
 </head>
 <body>
 <div align="center">
+	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
     <h2>Airplane Ticket Management</h2>
 	<a href="customer">Customer Management</a><br><br>
 	<a href="#">Flight Management</a><br><br>
 	<a href="#">Ticket Management</a><br><br>
 	<a href="#">Airport Management</a><br><br>
 	<a href="#">Ticket Type Management</a><br><br>
+	
+	<form th:action="@{/logout}" method="POST">
+		<input type="submit" value="Log out" />
+	</form>
 </div>   
 </body>
