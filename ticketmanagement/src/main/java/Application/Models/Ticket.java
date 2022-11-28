@@ -1,25 +1,45 @@
 package Application.Models;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="ticket")
-public class Ticket {
+public class Ticket implements Serializable{
 	private String ticketNumber;
 	private Calendar bookingDate;
 	private Calendar receiptDate;
-	private String customerID;
-	private String ticketTypeID;
-	private String flightID;
+	
+	
+	private Customer customer;
+	
+	
+	private TicketType ticketType;
+	
+	
+	private Flight flight;
 	
 	public Ticket()
 	{
@@ -55,27 +75,36 @@ public class Ticket {
 		this.receiptDate = receiptDate;
 	}
 
-	public String getCustomerID() {
-		return customerID;
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	@JoinColumn(name = "Customer_ID")
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
-	public String getTicketTypeID() {
-		return ticketTypeID;
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	@JoinColumn(name = "TicketType_ID")
+	public TicketType getTicketType() {
+		return ticketType;
 	}
 
-	public void setTicketTypeID(String ticketTypeID) {
-		this.ticketTypeID = ticketTypeID;
+	public void setTicketType(TicketType ticketType) {
+		this.ticketType = ticketType;
 	}
 
-	public String getFlightID() {
-		return flightID;
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	@JoinColumn(name = "Flight_ID")
+	public Flight getFlight() {
+		return flight;
 	}
 
-	public void setFlightID(String flightID) {
-		this.flightID = flightID;
+	public void setFlight(Flight flight) {
+		this.flight = flight;
 	}
 }

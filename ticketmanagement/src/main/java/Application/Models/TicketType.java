@@ -1,5 +1,7 @@
 package Application.Models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +11,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="ticket_type")
-public class TicketType {
+public class TicketType implements Serializable{
 	private String ticketTypeID;
 	private String ticketTypeName;
 	private int ticketTypePrice;

@@ -1,25 +1,38 @@
 package Application.Models;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="flight")
-public class Flight {
+public class Flight implements Serializable{
 	private String flightID;
 	private int numberOfSeat;
 	private Calendar departureTime;
 	private Calendar departureDate;
-	private String departureAirportID;
-	private String arriveAirportID;
+	private Airport departureAirport;
+	private Airport arriveAirport;
 	
 	public Flight()
 	{
@@ -63,19 +76,25 @@ public class Flight {
 		this.departureDate = departureDate;
 	}
 
-	public String getDepartureAirportID() {
-		return departureAirportID;
+  	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+  	@JoinColumn(name = "FK_Airport_ID_1", nullable = false)
+	public Airport getDepartureAirport() {
+		return departureAirport;
 	}
 
-	public void setDepartureAirportID(String departureAirportID) {
-		this.departureAirportID = departureAirportID;
+	public void setDepartureAirport(Airport departureAirport) {
+		this.departureAirport = departureAirport;
 	}
 
-	public String getArriveAirportID() {
-		return arriveAirportID;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+  	@JoinColumn(name = "FK_Airport_ID_2", nullable = false)
+	public Airport getArriveAirport() {
+		return arriveAirport;
 	}
 
-	public void setArriveAirportID(String arriveAirportID) {
-		this.arriveAirportID = arriveAirportID;
-	}	
+	public void setArriveAirport(Airport arriveAirport) {
+		this.arriveAirport = arriveAirport;
+	}
+
+	
 }
