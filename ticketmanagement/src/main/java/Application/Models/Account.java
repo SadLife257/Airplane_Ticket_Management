@@ -22,6 +22,13 @@ public class Account {
 		
 	}
 
+	public Account(String accountUsername, String accountEmail, String accountPassword) {
+		super();
+		this.accountUsername = accountUsername;
+		this.accountEmail = accountEmail;
+		this.accountPassword = accountPassword;
+	}
+
 	@Id
 	@GeneratedValue(generator = "Account_ID_Generator")  
     @GenericGenerator(name = "Account_ID_Generator", 

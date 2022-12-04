@@ -8,9 +8,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import Application.Models.Account;
+import io.jsonwebtoken.Claims;
 
 public class AccountDetail implements UserDetails{
 
+	private static final long serialVersionUID = 1L;
 	private Account account;
     
     public AccountDetail(Account account) {
@@ -22,6 +24,20 @@ public class AccountDetail implements UserDetails{
 		SimpleGrantedAuthority authority = new SimpleGrantedAuthority(account.getAccountRole());
         return Arrays.asList(authority);
 	}
+	
+	public String getId() {
+		return account.getAccountID();
+	}
+	
+	public String getEmail() {
+		return account.getAccountEmail();
+	}
+	
+	public String getRole()
+	{
+		return account.getAccountRole();
+	}
+
 
 	@Override
 	public String getPassword() {
@@ -52,5 +68,4 @@ public class AccountDetail implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-
 }
