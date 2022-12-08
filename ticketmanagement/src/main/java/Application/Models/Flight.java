@@ -20,6 +20,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -60,6 +61,8 @@ public class Flight implements Serializable{
 		this.numberOfSeat = numberOfSeat;
 	}
 
+	@Column(name = "Departure_Time")
+	@JsonFormat(pattern="HH:mm")
 	public Calendar getDepartureTime() {
 		return departureTime;
 	}
@@ -68,6 +71,8 @@ public class Flight implements Serializable{
 		this.departureTime = departureTime;
 	}
 
+	@Column(name = "Departure_Date")
+	@JsonFormat(pattern="dd/MM/yyyy")
 	public Calendar getDepartureDate() {
 		return departureDate;
 	}

@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -59,6 +60,7 @@ public class Ticket implements Serializable{
 		this.ticketNumber = ticketNumber;
 	}
 
+	@JsonFormat(pattern="dd/MM/yyyy")
 	public Calendar getBookingDate() {
 		return bookingDate;
 	}
@@ -67,6 +69,7 @@ public class Ticket implements Serializable{
 		this.bookingDate = bookingDate;
 	}
 
+	@JsonFormat(pattern="dd/MM/yyyy")
 	public Calendar getReceiptDate() {
 		return receiptDate;
 	}

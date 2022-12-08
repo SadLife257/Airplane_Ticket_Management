@@ -63,12 +63,12 @@ public class ApplicationController {
 		return airport;
 	}
 	
-	@RequestMapping(value = "/airport/{Airport_ID}", method = RequestMethod.POST)
+	@RequestMapping(value = "/airport/", method = RequestMethod.POST)
 	public Airport saveAirport(@Valid @RequestBody Airport airport) {
 		return airportService.save(airport);
 	}
 	
-	@RequestMapping(value = "/airport/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/airport/{Airport_ID}", method = RequestMethod.PUT)
 	public ResponseEntity<Airport> updateAirport(@PathVariable(value = "Airport_ID") String airportID,
 													@Valid @RequestBody Airport airportForm) {
 		Airport airport = airportService.getOne(airportID);
@@ -120,7 +120,7 @@ public class ApplicationController {
 		return customerService.save(customer);
 	}
 	
-	@RequestMapping(value = "/customer/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/customer/{Customer_ID}", method = RequestMethod.PUT)
 	public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "Customer_ID") String customerID,
 													@Valid @RequestBody Customer customerForm) {
 		Customer customer = customerService.getOne(customerID);
@@ -173,7 +173,7 @@ public class ApplicationController {
 		return flightService.save(flight);
 	}
 	
-	@RequestMapping(value = "/flight/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/flight/{Flight_ID}", method = RequestMethod.PUT)
 	public ResponseEntity<Flight> updateFlight(@PathVariable(value = "Flight_ID") String flightID,
 													@Valid @RequestBody Flight flightForm) {
 		Flight flight = flightService.getOne(flightID);
@@ -227,7 +227,7 @@ public class ApplicationController {
 		return ticketTypeService.save(ticketType);
 	}
 	
-	@RequestMapping(value = "/ticket_type/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/ticket_type/{Ticket_Type_ID}", method = RequestMethod.PUT)
 	public ResponseEntity<TicketType> updateTicketType(@PathVariable(value = "Ticket_Type_ID") String ticketTypeID,
 													@Valid @RequestBody TicketType ticketTypeForm) {
 		TicketType ticketType = ticketTypeService.getOne(ticketTypeID);
@@ -279,7 +279,7 @@ public class ApplicationController {
 		return ticketService.save(ticket);
 	}
 	
-	@RequestMapping(value = "/ticket/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/ticket/{Ticket_Number}", method = RequestMethod.PUT)
 	public ResponseEntity<Ticket> updateTicket(@PathVariable(value = "Ticket_Number") String ticketID,
 													@Valid @RequestBody Ticket ticketForm) {
 		Ticket ticket = ticketService.getOne(ticketID);
