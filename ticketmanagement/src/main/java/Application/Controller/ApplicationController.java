@@ -170,6 +170,12 @@ public class ApplicationController {
 	
 	@RequestMapping(value = "/flight/", method = RequestMethod.POST)
 	public Flight saveFlight(@Valid @RequestBody Flight flight) {
+		Airport departureAirport = airportService.getOne(flight.getDepartureAirport().getAirportID());
+		Airport arriveAirport = airportService.getOne(flight.getArriveAirport().getAirportID());
+		
+		flight.setDepartureAirport(departureAirport);
+		flight.setArriveAirport(arriveAirport);
+		
 		return flightService.save(flight);
 	}
 	
@@ -183,8 +189,13 @@ public class ApplicationController {
 	    flight.setNumberOfSeat(flightForm.getNumberOfSeat());
 	    flight.setDepartureTime(flightForm.getDepartureTime());
 	    flight.setDepartureDate(flightForm.getDepartureDate());
-	    flight.setDepartureAirport(flightForm.getDepartureAirport());
-	    flight.setArriveAirport(flightForm.getArriveAirport());
+	    
+	    Airport departureAirport = airportService.getOne(flightForm.getDepartureAirport().getAirportID());
+		Airport arriveAirport = airportService.getOne(flightForm.getArriveAirport().getAirportID());
+		
+		flight.setDepartureAirport(departureAirport);
+		flight.setArriveAirport(arriveAirport);
+		
 	    Flight updatedFlight = flightService.save(flight);
 	    return ResponseEntity.ok(updatedFlight);
 	}
@@ -276,6 +287,14 @@ public class ApplicationController {
 	
 	@RequestMapping(value = "/ticket/", method = RequestMethod.POST)
 	public Ticket saveTicket(@Valid @RequestBody Ticket ticket) {
+		Customer customer = customerService.getOne(ticket.getCustomer().getCustomerID());
+		Flight flight = flightService.getOne(ticket.getFlight().getFlightID());
+		TicketType ticketType = ticketTypeService.getOne(ticket.getTicketType().getTicketTypeID());
+		
+		ticket.setCustomer(customer);
+		ticket.setFlight(flight);
+		ticket.setTicketType(ticketType);
+		
 		return ticketService.save(ticket);
 	}
 	
@@ -288,9 +307,13 @@ public class ApplicationController {
 	    }
 	    ticket.setBookingDate(ticketForm.getBookingDate());
 	    ticket.setReceiptDate(ticketForm.getReceiptDate());
-	    ticket.setCustomer(ticketForm.getCustomer());
-	    ticket.setTicketType(ticketForm.getTicketType());
-	    ticket.setFlight(ticketForm.getFlight());
+	    Customer customer = customerService.getOne(ticketForm.getCustomer().getCustomerID());
+		Flight flight = flightService.getOne(ticketForm.getFlight().getFlightID());
+		TicketType ticketType = ticketTypeService.getOne(ticketForm.getTicketType().getTicketTypeID());
+		
+		ticket.setCustomer(customer);
+		ticket.setFlight(flight);
+		ticket.setTicketType(ticketType);
 	    Ticket updatedTicket = ticketService.save(ticket);
 	    return ResponseEntity.ok(updatedTicket);
 	}
