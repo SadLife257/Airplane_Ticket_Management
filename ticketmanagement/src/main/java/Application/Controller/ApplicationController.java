@@ -115,7 +115,7 @@ public class ApplicationController {
 		return customer;
 	}
 	
-	@RequestMapping(value = "/customer/{Customer_ID}", method = RequestMethod.POST)
+	@RequestMapping(value = "/customer/", method = RequestMethod.POST)
 	public Customer saveCustomer(@Valid @RequestBody Customer customer) {
 		return customerService.save(customer);
 	}
@@ -168,7 +168,7 @@ public class ApplicationController {
 		return flight;
 	}
 	
-	@RequestMapping(value = "/flight/{Flight_ID}", method = RequestMethod.POST)
+	@RequestMapping(value = "/flight/", method = RequestMethod.POST)
 	public Flight saveFlight(@Valid @RequestBody Flight flight) {
 		return flightService.save(flight);
 	}
@@ -222,7 +222,7 @@ public class ApplicationController {
 		return ticketType;
 	}
 	
-	@RequestMapping(value = "/ticket_type/{Ticket_Type_ID}", method = RequestMethod.POST)
+	@RequestMapping(value = "/ticket_type/", method = RequestMethod.POST)
 	public TicketType saveTicketType(@Valid @RequestBody TicketType ticketType) {
 		return ticketTypeService.save(ticketType);
 	}
@@ -274,7 +274,7 @@ public class ApplicationController {
 		return ticket;
 	}
 	
-	@RequestMapping(value = "/ticket/{Ticket_Number}", method = RequestMethod.POST)
+	@RequestMapping(value = "/ticket/", method = RequestMethod.POST)
 	public Ticket saveTicket(@Valid @RequestBody Ticket ticket) {
 		return ticketService.save(ticket);
 	}
