@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -78,9 +79,8 @@ public class Ticket implements Serializable{
 		this.receiptDate = receiptDate;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
-	@JoinColumn(name = "Customer_ID")
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+  	@JoinColumn(name = "Customer_ID", nullable = false)
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -89,9 +89,8 @@ public class Ticket implements Serializable{
 		this.customer = customer;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
-	@JoinColumn(name = "TicketType_ID")
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+  	@JoinColumn(name = "TicketType_ID", nullable = false)
 	public TicketType getTicketType() {
 		return ticketType;
 	}
@@ -100,9 +99,8 @@ public class Ticket implements Serializable{
 		this.ticketType = ticketType;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
-	@JoinColumn(name = "Flight_ID")
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+  	@JoinColumn(name = "Flight_ID", nullable = false)
 	public Flight getFlight() {
 		return flight;
 	}
